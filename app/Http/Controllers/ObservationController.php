@@ -41,4 +41,14 @@ class ObservationController extends Controller
 
         return response()->json($observations);
     }
+
+    //Filtrar observaciones por area
+    public function filterObservationsByArea($creditId, $area){
+        $observations = Observation::where('credit_id', $creditId)
+            ->where('area', $area)
+            ->orderBy('created_at', 'asc')
+            ->get();
+            
+        return response()->json($observations);
+    }
 }
